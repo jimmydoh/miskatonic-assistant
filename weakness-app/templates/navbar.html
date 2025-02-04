@@ -1,0 +1,62 @@
+<div class="container-fluid sticky-top bg-body-tertiary">
+    <div class="row align-items-center pt-2 pb-2">
+        <div class="col-12 col-sm-12 col-md-6 float-sm-center">
+            <div class="d-flex align-items-center align-center justify-content-center justify-content-md-start">
+                <a class="h5 d-flex align-items-center" href="#" id="brandingTop">
+                    <img src="{{ url_for('static', filename='images/logo.svg')}}" alt="Logo" width="50" height="50"
+                        class="d-inline-block align-text-top">
+                    Miskatonik Assistant - Weakness
+                </a>
+            </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6">
+            <div class="row">
+                <div class="d-flex justify-content-center justify-content-md-end">
+                    <button class="btn btn-outline-success p-2 me-1" id="btnCycles" data-bs-toggle="offcanvas"
+                        href="#offcanvasCycles" role="button" aria-controls="offcanvasCycles">Settings</button>
+                    <button class="btn btn-outline-success p-2 me-1" id="btnCycles" data-bs-toggle="modal"
+                        data-bs-target="#modalDrawPool" role="button" aria-controls="modalDrawPool">Draw Deck</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalDrawPool" tabindex="-1" aria-labelledby="labelModalDrawPool" aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 85vw">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="labelModalDrawPool">Current Draw Pool of Weaknesses</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container text-center mt-2">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <div class="alert alert-arkham" role="alert" id="cardSummary">
+                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container text-center">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 align-items-center" id="result">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasCycles" aria-labelledby="offcanvasCyclesLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasCyclesLabel" data-bs-dismiss="offcanvas">Adjust Settings</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        {% include "accordion-settings.html" %}
+    </div>
+</div>

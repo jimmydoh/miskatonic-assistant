@@ -1,0 +1,144 @@
+@use "sass:color";
+@use "sass:meta";
+@use "sass:string";
+
+$default-colour: #50667a;
+
+$cycle-colours: (
+    "core" #50667a,
+    "dunwich" #5b7774,
+    "carcosa" #776e82,
+    "forgotten" #7f5365,
+    "circle" #574c58,
+    "dream" #5b5a68,
+    "innsmouth" #536e77,
+    "edge" #5990ab,
+    "scarlet" #92585a,
+    "feast" #b67c5b,
+    "drowned" #7e8c6b,
+    "core-return" #2e3b47,
+    "dunwich-return" #344442,
+    "carcosa-return" #48424e,
+    "forgotten-return" #4c313c,
+    "circle-return" #241f24,
+    "guardian" #777777,
+    "seeker" #777777,
+    "rogue" #777777,
+    "mystic" #777777,
+    "survivor" #777777
+);
+
+@mixin check-base($theme: $default-colour) {
+    border-color: $theme;
+    $stripped-theme: string.slice(meta.inspect($theme), 2);
+    --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23#{$stripped-theme}'/%3e%3c/svg%3e");
+}
+
+@mixin check-focus($theme: $default-colour) {
+    outline: 0;
+    $shadow-color: rgba($theme, 0.25);
+    box-shadow: 0 0 0 .25rem $shadow-color;
+    $stripped-theme: string.slice(meta.inspect($theme), 2);
+    --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23#{$stripped-theme}'/%3e%3c/svg%3e");
+}
+
+@mixin check-checked($theme: $default-colour) {
+    background-color: $theme;
+    $switch-color: string.slice(color.ie-hex-str(color.mix($theme, white, $weight: 40%)), 4);
+    --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23#{$switch-color}'/%3e%3c/svg%3e");
+}
+
+.form-switch {
+    @each $cycle, $colour in $cycle-colours {
+        .check-#{$cycle} {
+            @include check-base($colour);
+
+            &:focus {
+                @include check-focus($colour);
+            }
+
+            &:checked {
+                @include check-checked($colour);
+            }
+        }
+    }
+}
+
+@mixin menu-button($offsetMultiplier: 1, $offset: 35px) {
+    position: fixed;
+    top: 5px + (($offsetMultiplier - 1) * $offset);
+    left: 0px;
+    width: 100px;
+    background-color: $default-colour;
+
+    &:hover {
+        left: 0px;
+    }
+}
+
+#brandingTop {
+    color: $default-colour;
+    text-decoration: none;
+}
+
+.fs-7 {
+    font-size: small;
+}
+
+.alert-arkham {
+    background-color: string.unquote("#" + string.slice(color.ie-hex-str(color.mix($default-colour, white, $weight: 40%)), 4));
+}
+
+.arkhamCard {
+
+    .card {
+        max-width: 215px;
+
+        .card-body {
+            img {
+                min-height: 215px;
+            }
+
+            .card-text {
+                min-height: 215px;
+            }
+        }
+    }
+}
+
+.arkhamCardFocus {
+
+    .card {
+        width: 100%;
+        max-width: 350px;
+
+        .card-body {
+            img {
+                min-height: 115px;
+            }
+
+            .card-text {
+                min-height: 115px;
+            }
+        }
+    }
+}
+
+.btn-circle.btn-xl {
+    max-width: 150px;
+    max-height: 150px;
+    padding: 10px 16px;
+    border-radius: 50%;
+    font-size: 12px;
+    text-align: center;
+
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.arkham-tooltip {
+    --bs-tooltip-bg: #50667a;
+    --bs-tooltip-color: var(--bs-white);
+}
