@@ -118,7 +118,7 @@ function setCycle(cycleSelector, checked) {
   for (let object of cycles) {
     if (object.selector === cycleSelector) {
         object.active = checked;
-        console.log(object.id,object.selector,object.active);
+        //console.log(object.id,object.selector,object.active);
         if (cardData) {
           sortCards(cardData);
         }
@@ -221,7 +221,7 @@ function drawCard(invId) {
     document.getElementById("footP"+invId).innerHTML += `
       <br/><span class="fw-semibold">${drawnCard.pack_name} - ${drawnCard.position}</span>
       `
-    console.log(drawpool);
+    //console.log(drawpool);
     renderDrawpool();
     poolSummary();
   }
@@ -274,7 +274,7 @@ function poolSummary() {
 function sortCards(data) {
   cards = JSON.parse(JSON.stringify(data));
   activeCycles = cycles.filter(cycle => cycle.active).map(cycle => cycle.id);
-  console.log(activeCycles)
+  //console.log(activeCycles)
   weaknesses = cards.filter(checkCycle);
   drawpool = [];
   weaknesses.forEach( weakness => {
@@ -290,29 +290,13 @@ function sortCards(data) {
 let drawBtns = document.querySelectorAll(`[id*="btnDrawPlayer"]`)
 drawBtns.forEach(drawBtn => {
   drawBtn.addEventListener('click', () => {
-    document.getElementById("btnDrawPlayer"+drawBtn.value).classList.add("disabled");
-    document.getElementById("btnThreePlayer"+drawBtn.value).classList.add("disabled");
-    document.getElementById("btnResetPlayer"+drawBtn.value).classList.remove("disabled"); 
     drawCard(drawBtn.value);
-  });
-});
-
-let threeBtns = document.querySelectorAll(`[id*="btnThreePlayer"]`)
-threeBtns.forEach(threeBtn => {
-  threeBtn.addEventListener('click', () => {
-    document.getElementById("btnDrawPlayer"+threeBtn.value).classList.add("disabled");
-    document.getElementById("btnThreePlayer"+threeBtn.value).classList.add("disabled");
-    document.getElementById("btnResetPlayer"+threeBtn.value).classList.remove("disabled"); 
-    
   });
 });
 
 let resetBtns = document.querySelectorAll(`[id*="btnResetPlayer"]`)
 resetBtns.forEach(resetBtn => {
-  resetBtn.addEventListener('click', () => {
-    document.getElementById("btnDrawPlayer"+resetBtn.value).classList.remove("disabled");
-    document.getElementById("btnThreePlayer"+resetBtn.value).classList.remove("disabled");
-    document.getElementById("btnResetPlayer"+resetBtn.value).classList.add("disabled"); 
+  resetBtn.addEventListener('click', () => { 
     resetAll(resetBtn.value);
   });
 });
@@ -343,6 +327,13 @@ investigatorRadios.forEach(investigatorRadio => {
     }
     checkRadioValue();
   }
+});
+
+let invImages = document.querySelectorAll(`[id*="imgP"]`)
+invImages.forEach(invImage => {
+  invImage.addEventListener('click', () => {
+    drawCard(invImage.id.substring(invImage.id.length - 1));
+  });
 });
 
 refreshCards();

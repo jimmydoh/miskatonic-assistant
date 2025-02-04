@@ -288,9 +288,6 @@
 .arkhamCard .card {
   max-width: 215px;
 }
-.arkhamCard .card .card-body img {
-  min-height: 215px;
-}
 .arkhamCard .card .card-body .card-text {
   min-height: 215px;
 }

@@ -1,23 +1,38 @@
 <div class="container-fluid sticky-top bg-body-tertiary">
     <div class="row align-items-center pt-2 pb-2">
-        <div class="col-12 col-sm-12 col-md-6 float-sm-center">
-            <div class="d-flex align-items-center align-center justify-content-center justify-content-md-start">
+        <div class="col-3 col-sm-6 col-md-6">
+            <div class="d-flex align-items-center align-center -md-start">
                 <a class="h5 d-flex align-items-center" href="#" id="brandingTop">
                     <img src="{{ url_for('static', filename='images/logo.svg')}}" alt="Logo" width="50" height="50"
                         class="d-inline-block align-text-top">
-                    Miskatonik Assistant - Weakness
+                    <div class="d-none d-md-block">Miskatonik Assistant - Weakness</div>
+                    <div class="d-none d-sm-block d-md-none">Weakness</div>
                 </a>
             </div>
         </div>
-        <div class="col-12 col-sm-12 col-md-6">
+        <div class="col-9 col-sm-6 col-md-6">
             <div class="row">
-                <div class="d-flex justify-content-center justify-content-md-end">
+                <div class="d-flex justify-content-end">
                     <button class="btn btn-outline-success p-2 me-1" id="btnCycles" data-bs-toggle="offcanvas"
                         href="#offcanvasCycles" role="button" aria-controls="offcanvasCycles">Settings</button>
                     <button class="btn btn-outline-success p-2 me-1" id="btnCycles" data-bs-toggle="modal"
                         data-bs-target="#modalDrawPool" role="button" aria-controls="modalDrawPool">Draw Deck</button>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="d-flex justify-content-center">
+            <button class="btn btn-secondary m-1" id="btnDrawPlayer" role="button" value="">
+                Draw
+            </button>
+            <button class="btn btn-secondary m-1" id="btnThreePlayer" data-bs-toggle="modal"
+            data-bs-target="#modalDraw3" role="button" aria-controls="modalDraw3" value="">
+                Draw 3
+            </button>
+            <button class="btn btn-secondary m-1" id="btnResetPlayer" role="button" value="">
+                Reset
+            </button>
         </div>
     </div>
 </div>
@@ -40,12 +55,32 @@
                     </div>
                 </div>
                 <div class="container text-center">
-                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 align-items-center" id="result">
+                    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 align-items-center" id="result">
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalDraw3" data-bs-backdrop="static" tabindex="-1" aria-labelledby="labelModalDraw3" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" style="max-width: 85vw">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="labelModalDraw3">Draw 3</h1>
+            </div>
+            <div class="modal-body">                
+                <div class="container text-center">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 align-items-center" id="draw3Content">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary">Final Draw</button>
             </div>
         </div>
     </div>
