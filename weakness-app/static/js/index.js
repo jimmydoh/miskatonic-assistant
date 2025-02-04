@@ -325,8 +325,8 @@ investigatorRadios.forEach(investigatorRadio => {
     if (storedCount == investigatorRadio.value) {
       investigatorRadio.checked = true;
     }
-    checkRadioValue();
   }
+  checkRadioValue();
 });
 
 let invImages = document.querySelectorAll(`[id*="imgP"]`)
