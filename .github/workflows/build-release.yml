@@ -49,7 +49,7 @@ jobs:
       
       - name: Test build
         run: |
-          docker run --rm ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:test
+          docker run --rm ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:test gunicorn --bind 0.0.0.0:5000 weakness-app.webapp:app --print-config
 
       - name: Build final images
         id: build-and-push
