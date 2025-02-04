@@ -50,7 +50,7 @@ jobs:
 
       - name: Test build
         run: |
-          docker run --rm ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:test -V
+          docker run --rm ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:test
 
       - name: Build final images
         id: build-and-push

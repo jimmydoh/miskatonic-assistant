@@ -12,3 +12,4 @@ services:
       - 5678:5678
     environment:
       - FLASK_APP=weakness-app\webapp.py
+      - CDN_ROOT=https://thisisfine.au/cdn
