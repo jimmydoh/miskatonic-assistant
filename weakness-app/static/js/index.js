@@ -236,11 +236,7 @@ function drawCard(invId,count) {
       }
       document.getElementById("footP"+invId).innerHTML += `
         <br/><span class="fw-semibold">${drawnCard.pack_name} - ${drawnCard.position}</span>
-        `
-      //console.log(drawpool);
-      checkDrawCapable();
-      renderDrawpool();
-      poolSummary();
+        `      
     } else if (count===3) {
       document.getElementById("imgP"+invId).classList.add("d-none");
       for (let i=1; i <= count; i++) {
@@ -260,6 +256,9 @@ function drawCard(invId,count) {
     } else {
 
     }
+    checkDrawCapable();
+    renderDrawpool();
+    poolSummary();
   }
 }
 
@@ -386,7 +385,7 @@ let invImages = document.querySelectorAll(`[id*="imgP"]`)
 invImages.forEach(invImage => {
   invImage.addEventListener('click', () => {
     if (drawpool.length >= 1) {
-      drawCard(invImage.id.substring(invImage.id.length - 1));
+      drawCard(invImage.id.substring(invImage.id.length - 1),1);
     }
   });
 });
