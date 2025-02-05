@@ -296,11 +296,17 @@
   width: 100%;
   max-width: 350px;
 }
+.arkhamCardFocus .card .card-body {
+  min-height: 250px;
+}
 .arkhamCardFocus .card .card-body img {
   min-height: 115px;
 }
 .arkhamCardFocus .card .card-body .card-text {
   min-height: 115px;
+}
+.arkhamCardFocus .card .card-body .row img {
+  min-height: 70px;
 }
 
 .btn-circle.btn-xl {

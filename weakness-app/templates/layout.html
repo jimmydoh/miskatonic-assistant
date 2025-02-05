@@ -8,18 +8,12 @@
     <link href="{{ url_for('static', filename='css/site.css')}}" rel="stylesheet" type="text/css">
   </head>
   <body>
-    {% include "navbar.html" %}
-    <div class="start-content">
-        {% block start_content %}
-        {% endblock %}
-    </div>
-    <div class="main-content">
-        {% block content %}
-        {% endblock %}
-    </div>
-    <div class="end-content">
-      
-    </div>
+    {% block start_content %}
+    {% endblock %}
+    {% block content %}
+    {% endblock %}
+    {% block end_content %}
+    {% endblock %}
     <script>
       const cdnRoot = "{{cdn_root}}";
     </script>

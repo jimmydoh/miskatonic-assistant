@@ -196,34 +196,70 @@ function saveCards(data) {
   sortCards(cardData);
 }
 
-function drawCard(invId) {
+function checkDrawCapable() {
+  if (drawpool.length < investigatorCount * 3) {
+    document.getElementById("btnThreePlayer").disabled = true;
+  } else {
+    document.getElementById("btnThreePlayer").disabled = false;
+  }
+  if (drawpool.length < investigatorCount) {
+    document.getElementById("btnDrawPlayer").disabled = true;
+  } else {
+    document.getElementById("btnDrawPlayer").disabled = false;
+  }
+}
+
+function drawCard(invId,count) {
   if (invId==="") {
     activeInvs.forEach(inv => {
-      drawCard(inv);
+      drawCard(inv,count);
     });
   } else {
-    let chosenIndex = getRandomInt(drawpool.length);
-    let drawnCard = drawpool[chosenIndex];
-    drawpool.splice(chosenIndex,1);
-    let imgsrc = "/static/images/logo.svg";
-    if (drawnCard.imagesrc) {
-      imgsrc = cdnRoot + drawnCard.imagesrc.substring(0, drawnCard.imagesrc.lastIndexOf('.'))+".avif";
-    }
-    document.getElementById("imgP"+invId).src = imgsrc;
-    document.getElementById("footP"+invId).innerHTML = `
-    ${drawnCard.name}
-    `;
-    if (drawnCard.subname) {
+    if (count===1) {
+      let chosenIndex = getRandomInt(drawpool.length);
+      let drawnCard = drawpool[chosenIndex];
+      drawpool.splice(chosenIndex,1);
+      let imgsrc = "/static/images/logo.svg";
+      if (drawnCard.imagesrc) {
+        imgsrc = cdnRoot + drawnCard.imagesrc.substring(0, drawnCard.imagesrc.lastIndexOf('.'))+".avif";
+      }
+      document.getElementById("imgP"+invId).src = imgsrc;
+      document.getElementById("imgP"+invId).classList.remove("d-none");
+      document.getElementById("row3"+invId).classList.add("d-none");
+      document.getElementById("footP"+invId).innerHTML = `
+      ${drawnCard.name}
+      `;
+      if (drawnCard.subname) {
+        document.getElementById("footP"+invId).innerHTML += `
+        <br/><span class="fw-lighter">${drawnCard.subname}</span>
+        `
+      }
       document.getElementById("footP"+invId).innerHTML += `
-      <br/><span class="fw-lighter">${drawnCard.subname}</span>
-      `
+        <br/><span class="fw-semibold">${drawnCard.pack_name} - ${drawnCard.position}</span>
+        `
+      //console.log(drawpool);
+      checkDrawCapable();
+      renderDrawpool();
+      poolSummary();
+    } else if (count===3) {
+      document.getElementById("imgP"+invId).classList.add("d-none");
+      for (let i=1; i <= count; i++) {
+        let chosenIndex = getRandomInt(drawpool.length);
+        let drawnCard = drawpool[chosenIndex];
+        drawpool.splice(chosenIndex,1);
+        let imgsrc = "/static/images/logo.svg";
+        if (drawnCard.imagesrc) {
+          imgsrc = cdnRoot + drawnCard.imagesrc.substring(0, drawnCard.imagesrc.lastIndexOf('.'))+".avif";
+        }
+        document.getElementById("img3"+i+invId).src = imgsrc;        
+        document.getElementById("footP"+invId).innerHTML = `
+        Select <strong>1</strong> card to Veto
+        `;
+      }
+      document.getElementById("row3"+invId).classList.remove("d-none");
+    } else {
+
     }
-    document.getElementById("footP"+invId).innerHTML += `
-      <br/><span class="fw-semibold">${drawnCard.pack_name} - ${drawnCard.position}</span>
-      `
-    //console.log(drawpool);
-    renderDrawpool();
-    poolSummary();
   }
 }
 
@@ -231,11 +267,17 @@ function resetAll(invId) {
   if (invId==="") {
     activeInvs.forEach(inv => {
       resetAll(inv);
-    });
+    });    
     sortCards(cardData);
   } else {
     document.getElementById("imgP"+invId).src = cdnRoot + "/cardback.png";
     document.getElementById("footP"+invId).innerHTML = "";
+    document.getElementById("imgP"+invId).classList.remove("d-none");
+    let img3s = document.querySelectorAll(`[id*="img3"]`);
+    img3s.forEach(img3 => {
+      img3.src = cdnRoot + "/cardback.png";
+    });
+    document.getElementById("row3"+invId).classList.add("d-none");
   }
 }
 
@@ -269,6 +311,9 @@ function poolSummary() {
   <br/>
   <strong>${drawpool.length}</strong> total cards left in your draw pool.
   `
+  document.getElementById("btnPool").innerHTML = `
+  Draw Pool (${drawpool.length})
+  `
 }
 
 function sortCards(data) {
@@ -283,6 +328,7 @@ function sortCards(data) {
     }
   });
   //shuffleArray(drawpool);
+  checkDrawCapable();
   renderDrawpool();
   poolSummary();
 }
@@ -290,7 +336,14 @@ function sortCards(data) {
 let drawBtns = document.querySelectorAll(`[id*="btnDrawPlayer"]`)
 drawBtns.forEach(drawBtn => {
   drawBtn.addEventListener('click', () => {
-    drawCard(drawBtn.value);
+    drawCard(drawBtn.value,1);
+  });
+});
+
+let threeBtns = document.querySelectorAll(`[id*="btnThreePlayer"]`)
+threeBtns.forEach(threeBtn => {
+  threeBtn.addEventListener('click', () => {
+    drawCard(threeBtn.value,3);
   });
 });
 
@@ -332,7 +385,9 @@ investigatorRadios.forEach(investigatorRadio => {
 let invImages = document.querySelectorAll(`[id*="imgP"]`)
 invImages.forEach(invImage => {
   invImage.addEventListener('click', () => {
-    drawCard(invImage.id.substring(invImage.id.length - 1));
+    if (drawpool.length >= 1) {
+      drawCard(invImage.id.substring(invImage.id.length - 1));
+    }
   });
 });
 

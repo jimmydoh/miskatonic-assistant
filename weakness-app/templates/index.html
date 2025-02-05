@@ -1,25 +1,167 @@
 {% extends "layout.html" %}
 {% block title %}Miskatonik Assistant - Weakness{% endblock %}
 {% block start_content %}
+<div class="container-fluid sticky-top bg-body-tertiary">
+    <div class="row align-items-center pt-2 pb-2">
+        <div class="col-3 col-sm-6 col-md-6">
+            <div class="d-flex align-items-center align-center -md-start">
+                <a class="h5 d-flex align-items-center" href="#" id="brandingTop">
+                    <img src="{{ url_for('static', filename='images/logo.svg')}}" alt="Logo" width="50" height="50"
+                        class="d-inline-block align-text-top">
+                    <div class="d-none d-md-block">Miskatonik Assistant - Weakness</div>
+                    <div class="d-none d-sm-block d-md-none">Weakness</div>
+                </a>
+            </div>
+        </div>
+        <div class="col-9 col-sm-6 col-md-6">
+            <div class="row">
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-outline-success p-2 me-1" id="btnSettings" data-bs-toggle="offcanvas"
+                        href="#offcanvasCycles" role="button" aria-controls="offcanvasCycles">Settings</button>
+                    <button class="btn btn-outline-success p-2 me-1" id="btnPool" data-bs-toggle="modal"
+                        data-bs-target="#modalDrawPool" role="button" aria-controls="modalDrawPool">Show Pool</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalDrawPool" tabindex="-1" aria-labelledby="labelModalDrawPool" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="labelModalDrawPool">Current Draw Pool of Weaknesses</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container text-center mt-2">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <div class="alert alert-arkham" role="alert" id="cardSummary">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container text-center">
+                    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 align-items-center"
+                        id="result">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalDraw3" data-bs-backdrop="static" tabindex="-1" aria-labelledby="labelModalDraw3"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" style="max-width: 85vw">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="labelModalDraw3">Draw 3</h1>
+            </div>
+            <div class="modal-body">
+                <div class="container text-center">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 align-items-center"
+                        id="draw3Content">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary">Final Draw</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCycles" aria-labelledby="offcanvasCyclesLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasCyclesLabel" data-bs-dismiss="offcanvas">Adjust Settings</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        {% include "accordion-settings.html" %}
+    </div>
+</div>
 {% endblock %}
 {% block content %}
-<div class="container-lg text-center">
+<div class="container-lg text-center mb-5">
     <div class="row g-1 align-items-center">
         {% for investigator in investigators: %}
         <div class="col arkhamCardFocus align-self-start" id="divP{{investigator.id}}">
             <div class="d-inline-block card">
                 <div class="card-header">
-                    <h6>Investigator {{investigator.name}}</h6>
+                    <h6 class="mb-0">Investigator {{investigator.name}}</h6>
                 </div>
-                <div class="card-body">
-                    <img class="img-fluid rounded card-img-top flip flip-back" id="imgP{{investigator.id}}"
-                        src="{{(cdn_root + "/cardback.png")}}" alt="Basic Weakness Card" value="{{investigator.id}}" />
+                <div class="card-body p-1">
+                    <img class="img-fluid rounded card-img-top" id="imgP{{investigator.id}}" src="{{(cdn_root + "/cardback.png")}}" 
+                        alt="Basic Weakness Card" value="{{investigator.id}}" />
+                    <div class="row g-1 d-none" id="row3{{investigator.id}}">
+
+                        <ul class="nav nav-tabs" id="tab3{{investigator.id}}" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="tab31{{investigator.id}}" data-bs-toggle="tab"
+                                    data-bs-target="#tab31{{investigator.id}}content" type="button" role="tab" aria-controls="tab31{{investigator.id}}content"
+                                    aria-selected="true">1</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="tab32{{investigator.id}}" data-bs-toggle="tab" data-bs-target="#tab32{{investigator.id}}content"
+                                    type="button" role="tab" aria-controls="tab32{{investigator.id}}content"
+                                    aria-selected="false">2</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="tab33{{investigator.id}}" data-bs-toggle="tab" data-bs-target="#tab33{{investigator.id}}content"
+                                    type="button" role="tab" aria-controls="tab33{{investigator.id}}content"
+                                    aria-selected="false">3</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="tab3{{investigator.id}}content">
+                            <div class="tab-pane show active" id="tab31{{investigator.id}}content" role="tabpanel" aria-labelledby="tab31{{investigator.id}}">
+                                <img class="img-fluid rounded card-img-top img-3-left" id="img31{{investigator.id}}"
+                                    src="{{(cdn_root + " /cardback.png")}}" alt="Basic Weakness Card"
+                                    value="a{{investigator.id}}" />
+                            </div>
+                            <div class="tab-pane" id="tab32{{investigator.id}}content" role="tabpanel" aria-labelledby="tab32{{investigator.id}}"><img
+                                    class="img-fluid rounded card-img-top img-3-center" id="img32{{investigator.id}}"
+                                    src="{{(cdn_root + " /cardback.png")}}" alt="Basic Weakness Card"
+                                    value="b{{investigator.id}}" />
+                            </div>
+                            <div class="tab-pane" id="tab33{{investigator.id}}content" role="tabpanel" aria-labelledby="tab33{{investigator.id}}"><img
+                                    class="img-fluid rounded card-img-top img-3-right" id="img33{{investigator.id}}"
+                                    src="{{(cdn_root + " /cardback.png")}}" alt="Basic Weakness Card"
+                                    value="c{{investigator.id}}" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-footer text-body-secondary" id="footP{{investigator.id}}">
+                <div class="card-footer text-body-secondary fs-7 text-wrap" id="footP{{investigator.id}}">
                 </div>
             </div>
         </div>
         {% endfor %}
+    </div>
+</div>
+{% endblock %}
+{% block end_content %}
+<div class="w-100 position-fixed bottom-0">
+    <div class="container">
+        <div class="row">
+            <div class="d-flex justify-content-center">
+                <button class="btn btn-secondary m-1" id="btnDrawPlayer" role="button" value="">
+                    Draw
+                </button>
+                <button class="btn btn-secondary m-1" id="btnThreePlayer" role="button" value="">
+                    Draw 3
+                </button>
+                <button class="btn btn-secondary m-1" id="btnResetPlayer" role="button" value="">
+                    Reset
+                </button>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

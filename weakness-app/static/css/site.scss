@@ -95,9 +95,7 @@ $cycle-colours: (
         max-width: 215px;
 
         .card-body {
-            img {
-                
-            }
+            img {}
 
             .card-text {
                 min-height: 215px;
@@ -113,12 +111,21 @@ $cycle-colours: (
         max-width: 350px;
 
         .card-body {
+
+            min-height: 250px;
+
             img {
                 min-height: 115px;
             }
 
             .card-text {
                 min-height: 115px;
+            }
+
+            .row {
+                    img {
+                        min-height: 70px;                        
+                    }
             }
         }
     }
