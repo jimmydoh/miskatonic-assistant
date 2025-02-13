@@ -53,6 +53,11 @@ let cycles = [
     active: true
   },
   {
+    id: "tdcp",
+    selector: "switchdro",
+    active: true
+  },
+  {
     id: "rtdwl",
     selector: "switchdunret",
     active: true
@@ -222,6 +227,8 @@ function drawCard(invId,count) {
       let imgsrc = "/static/images/logo.svg";
       if (drawnCard.imagesrc) {
         imgsrc = cdnRoot + drawnCard.imagesrc.substring(0, drawnCard.imagesrc.lastIndexOf('.'))+".avif";
+      } else {
+        imgsrc = cdnRoot + "/bundles/cards/" + drawnCard.code + ".avif";
       }
       document.getElementById("imgP"+invId).src = imgsrc;
       document.getElementById("imgP"+invId).classList.remove("d-none");
@@ -246,10 +253,13 @@ function drawCard(invId,count) {
         let imgsrc = "/static/images/logo.svg";
         if (drawnCard.imagesrc) {
           imgsrc = cdnRoot + drawnCard.imagesrc.substring(0, drawnCard.imagesrc.lastIndexOf('.'))+".avif";
+        } else {
+          imgsrc = cdnRoot + "/bundles/cards/" + drawnCard.code + ".avif";
         }
         document.getElementById("img3"+i+invId).src = imgsrc;        
         document.getElementById("footP"+invId).innerHTML = `
-        Select <strong>1</strong> card to Veto
+        Select <strong>1</strong> card to
+        <button class="btn btn-dark btn-sm" id="btnVeto${invId}" role="button">VETO</button>
         `;
       }
       document.getElementById("row3"+invId).classList.remove("d-none");
@@ -286,6 +296,8 @@ function renderDrawpool() {
     let imgsrc = "/static/images/logo.svg";
     if (drawp.imagesrc) {
       imgsrc = cdnRoot + drawp.imagesrc.substring(0, drawp.imagesrc.lastIndexOf('.'))+".avif";
+    } else {
+      imgsrc = cdnRoot + "/bundles/cards/" + drawp.code + ".avif";
     }
     document.getElementById("result").innerHTML += `
     <div class="col arkhamCard">
