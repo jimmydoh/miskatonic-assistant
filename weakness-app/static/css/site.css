@@ -207,69 +207,69 @@
   --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23A7A5A7'/%3e%3c/svg%3e");
 }
 .form-switch .check-guardian {
-  border-color: #777777;
-  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23777777'/%3e%3c/svg%3e");
+  border-color: #1b3d64;
+  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%231b3d64'/%3e%3c/svg%3e");
 }
 .form-switch .check-guardian:focus {
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(119, 119, 119, 0.25);
-  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23777777'/%3e%3c/svg%3e");
+  box-shadow: 0 0 0 0.25rem rgba(27, 61, 100, 0.25);
+  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%231b3d64'/%3e%3c/svg%3e");
 }
 .form-switch .check-guardian:checked {
-  background-color: #777777;
-  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23C9C9C9'/%3e%3c/svg%3e");
+  background-color: #1b3d64;
+  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23A4B1C1'/%3e%3c/svg%3e");
 }
 .form-switch .check-seeker {
-  border-color: #777777;
-  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23777777'/%3e%3c/svg%3e");
+  border-color: #d07913;
+  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23d07913'/%3e%3c/svg%3e");
 }
 .form-switch .check-seeker:focus {
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(119, 119, 119, 0.25);
-  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23777777'/%3e%3c/svg%3e");
+  box-shadow: 0 0 0 0.25rem rgba(208, 121, 19, 0.25);
+  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23d07913'/%3e%3c/svg%3e");
 }
 .form-switch .check-seeker:checked {
-  background-color: #777777;
-  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23C9C9C9'/%3e%3c/svg%3e");
+  background-color: #d07913;
+  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23ECC9A1'/%3e%3c/svg%3e");
 }
 .form-switch .check-rogue {
-  border-color: #777777;
-  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23777777'/%3e%3c/svg%3e");
+  border-color: #14533f;
+  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%2314533f'/%3e%3c/svg%3e");
 }
 .form-switch .check-rogue:focus {
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(119, 119, 119, 0.25);
-  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23777777'/%3e%3c/svg%3e");
+  box-shadow: 0 0 0 0.25rem rgba(20, 83, 63, 0.25);
+  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%2314533f'/%3e%3c/svg%3e");
 }
 .form-switch .check-rogue:checked {
-  background-color: #777777;
-  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23C9C9C9'/%3e%3c/svg%3e");
+  background-color: #14533f;
+  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23A1BAB2'/%3e%3c/svg%3e");
 }
 .form-switch .check-mystic {
-  border-color: #777777;
-  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23777777'/%3e%3c/svg%3e");
+  border-color: #544a81;
+  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23544a81'/%3e%3c/svg%3e");
 }
 .form-switch .check-mystic:focus {
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(119, 119, 119, 0.25);
-  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23777777'/%3e%3c/svg%3e");
+  box-shadow: 0 0 0 0.25rem rgba(84, 74, 129, 0.25);
+  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23544a81'/%3e%3c/svg%3e");
 }
 .form-switch .check-mystic:checked {
-  background-color: #777777;
-  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23C9C9C9'/%3e%3c/svg%3e");
+  background-color: #544a81;
+  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23BBB7CD'/%3e%3c/svg%3e");
 }
 .form-switch .check-survivor {
-  border-color: #777777;
-  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23777777'/%3e%3c/svg%3e");
+  border-color: #b42116;
+  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23b42116'/%3e%3c/svg%3e");
 }
 .form-switch .check-survivor:focus {
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(119, 119, 119, 0.25);
-  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23777777'/%3e%3c/svg%3e");
+  box-shadow: 0 0 0 0.25rem rgba(180, 33, 22, 0.25);
+  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23b42116'/%3e%3c/svg%3e");
 }
 .form-switch .check-survivor:checked {
-  background-color: #777777;
-  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23C9C9C9'/%3e%3c/svg%3e");
+  background-color: #b42116;
+  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23E1A6A2'/%3e%3c/svg%3e");
 }
 
 #brandingTop {

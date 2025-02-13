@@ -21,11 +21,11 @@ $cycle-colours: (
     "carcosa-return" #48424e,
     "forgotten-return" #4c313c,
     "circle-return" #241f24,
-    "guardian" #777777,
-    "seeker" #777777,
-    "rogue" #777777,
-    "mystic" #777777,
-    "survivor" #777777
+    "guardian" #1b3d64,
+    "seeker" #d07913,
+    "rogue" #14533f,
+    "mystic" #544a81,
+    "survivor" #b42116
 );
 
 @mixin check-base($theme: $default-colour) {

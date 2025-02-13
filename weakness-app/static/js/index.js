@@ -1,6 +1,12 @@
 let cardData;
 let weaknesses = [];
 let drawpool = [];
+let drawthree = [
+  [],
+  [],
+  [],
+  []
+];
 let cycles = [
   {
     id: "core",
@@ -201,6 +207,44 @@ function saveCards(data) {
   sortCards(cardData);
 }
 
+function veto(invId,cardId) {
+  console.log("Veto: "+invId+" "+cardId);
+  let vetoCard = drawthree[invId-1][cardId-1];
+  drawpool.push(vetoCard);
+  drawthree[invId-1].splice(cardId-1,1);
+  let chosenIndex = getRandomInt(drawthree[invId-1].length);
+  let drawnCard = drawthree[invId-1][chosenIndex];
+  drawthree[invId-1].splice(chosenIndex,1);
+  drawpool.push(drawthree[invId-1][0]);
+  drawthree[invId-1]=[];
+
+  checkDrawCapable();
+  renderDrawpool();
+  poolSummary();
+
+  let imgsrc = "/static/images/logo.svg";
+  if (drawnCard.imagesrc) {
+    imgsrc = cdnRoot + drawnCard.imagesrc.substring(0, drawnCard.imagesrc.lastIndexOf('.'))+".avif";
+  } else {
+    imgsrc = cdnRoot + "/bundles/cards/" + drawnCard.code + ".avif";
+  }
+  document.getElementById("imgP"+invId).src = imgsrc;
+  document.getElementById("imgP"+invId).classList.remove("d-none");
+  document.getElementById("row3"+invId).classList.add("d-none");
+  document.getElementById("footP"+invId).innerHTML = `
+  ${drawnCard.name}
+  `;
+  if (drawnCard.subname) {
+    document.getElementById("footP"+invId).innerHTML += `
+    <br/><span class="fw-lighter">${drawnCard.subname}</span>
+    `
+  }
+  document.getElementById("footP"+invId).innerHTML += `
+    <br/><span class="fw-semibold">${drawnCard.pack_name} - ${drawnCard.position}</span>
+    `  
+  document.getElementById("footP"+invId).classList.remove("d-none");
+}
+
 function checkDrawCapable() {
   if (drawpool.length < investigatorCount * 3) {
     document.getElementById("btnThreePlayer").disabled = true;
@@ -243,13 +287,17 @@ function drawCard(invId,count) {
       }
       document.getElementById("footP"+invId).innerHTML += `
         <br/><span class="fw-semibold">${drawnCard.pack_name} - ${drawnCard.position}</span>
-        `      
+        `  
+      document.getElementById("footP"+invId).classList.remove("d-none");    
     } else if (count===3) {
       document.getElementById("imgP"+invId).classList.add("d-none");
+      document.getElementById("footP"+invId).classList.add("d-none");
+      drawthree[invId-1] = [];
       for (let i=1; i <= count; i++) {
         let chosenIndex = getRandomInt(drawpool.length);
         let drawnCard = drawpool[chosenIndex];
         drawpool.splice(chosenIndex,1);
+        drawthree[invId-1].push(drawnCard);
         let imgsrc = "/static/images/logo.svg";
         if (drawnCard.imagesrc) {
           imgsrc = cdnRoot + drawnCard.imagesrc.substring(0, drawnCard.imagesrc.lastIndexOf('.'))+".avif";
@@ -257,9 +305,9 @@ function drawCard(invId,count) {
           imgsrc = cdnRoot + "/bundles/cards/" + drawnCard.code + ".avif";
         }
         document.getElementById("img3"+i+invId).src = imgsrc;        
-        document.getElementById("footP"+invId).innerHTML = `
+        document.getElementById("footP"+invId+i).innerHTML = `
         Select <strong>1</strong> card to
-        <button class="btn btn-dark btn-sm" id="btnVeto${invId}" role="button">VETO</button>
+        <button class="btn btn-dark btn-sm" id="btnVeto${invId}${i}" onclick="veto(${invId},${i})" role="button">VETO & DRAW</button>
         `;
       }
       document.getElementById("row3"+invId).classList.remove("d-none");
