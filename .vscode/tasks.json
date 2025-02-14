@@ -20,7 +20,8 @@
 			],
 			"dockerRun": {
 				"env": {
-					"FLASK_APP": "weakness-app.webapp"
+					"FLASK_APP": "weakness-app.webapp",
+					"CDN_ROOT": "https://thisisfine.au/cdn"
 				}
 			},
 			"python": {

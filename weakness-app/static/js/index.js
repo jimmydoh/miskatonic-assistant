@@ -275,6 +275,7 @@ function drawCard(invId,count) {
         imgsrc = cdnRoot + "/bundles/cards/" + drawnCard.code + ".avif";
       }
       document.getElementById("imgP"+invId).src = imgsrc;
+      document.getElementById("imgP"+invId).alt = drawnCard.name;
       document.getElementById("imgP"+invId).classList.remove("d-none");
       document.getElementById("row3"+invId).classList.add("d-none");
       document.getElementById("footP"+invId).innerHTML = `
@@ -284,6 +285,7 @@ function drawCard(invId,count) {
         document.getElementById("footP"+invId).innerHTML += `
         <br/><span class="fw-lighter">${drawnCard.subname}</span>
         `
+        document.getElementById("imgP"+invId).alt += " - " + drawnCard.subname;
       }
       document.getElementById("footP"+invId).innerHTML += `
         <br/><span class="fw-semibold">${drawnCard.pack_name} - ${drawnCard.position}</span>
